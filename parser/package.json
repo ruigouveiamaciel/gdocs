@@ -1,5 +1,6 @@
 {
-	"name": "gdocs",
+	"name": "parser",
+	"private": true,
 	"version": "1.0.0",
 	"main": "src/main.ts",
 	"author": "Rui Maciel <ruigouveiamaciel@gmail.com>",
@@ -10,6 +11,6 @@
 		"typescript": "^3.9.7"
 	},
 	"scripts": {
-		"dev": "tsnd --ignore-watch node_modules --respawn src/main.ts"
+		"start": "tsnd --ignore-watch node_modules --respawn src/main.ts"
 	}
 }
