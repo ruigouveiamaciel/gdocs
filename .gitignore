@@ -5,9 +5,28 @@ parser/npm-debug.log*
 parser/yarn-debug.log*
 parser/yarn-error.log*
 parser/lerna-debug.log*
+builder/npm-debug.log*
+builder/yarn-debug.log*
+builder/yarn-error.log*
 
-# Node Modules
+# Misc
+builder/.DS_Store
+builder/.env.local
+builder/.env.development.local
+builder/.env.test.local
+builder/.env.production.local
+
+# Dependencies
 parser/node_modules/
+builder/node_modules
+builder/.pnp
+builder/.pnp.js
 
 # VS Code
 .vscode
+
+# Testing
+builder/coverage
+
+# Production
+builder/build
