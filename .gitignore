@@ -1,0 +1,13 @@
+# Logs
+parser/logs
+parser/*.log
+parser/npm-debug.log*
+parser/yarn-debug.log*
+parser/yarn-error.log*
+parser/lerna-debug.log*
+
+# Node Modules
+parser/node_modules/
+
+# VS Code
+.vscode
