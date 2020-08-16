@@ -30,3 +30,7 @@ builder/coverage
 
 # Production
 builder/build
+
+# Enviroment files
+builder/.env*
+parser/.env*

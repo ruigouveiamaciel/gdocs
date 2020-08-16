@@ -1,8 +1,10 @@
 {
   "name": "builder",
   "homepage": ".",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "author": "Rui Maciel <ruigouveiamaciel@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -11,9 +13,11 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/styled-components": "^5.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "styled-components": "^5.1.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
