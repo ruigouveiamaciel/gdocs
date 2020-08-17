@@ -26,8 +26,6 @@ export default class Tag {
 		const match = string.match(this.re);
 
 		if (!match) {
-
-			console.log([string], this.re)
 			throw `The '@${this.name}' tag requires ${this.argsCount} argument(s).`;
 		}
 
