@@ -8,12 +8,14 @@ import { get_unique, get_multiple } from "../../utils/functions";
 import AliasTag from "../Tags/AliasTag";
 import ClassCategory from "./ClassCategory";
 import TablePage from "./TablePage";
+import TableCategory from "./TableCategory";
 
 export type ValidSubcategory =
 	| Category
 	| ClassCategory
 	| FunctionPage
-	| TablePage;
+	| TablePage
+	| TableCategory;
 
 export default class Category {
 	readonly subcategories: {
