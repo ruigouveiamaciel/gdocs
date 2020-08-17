@@ -1,0 +1,262 @@
+{
+    "globals": {
+        "name": "Globals",
+        "subcategories": {
+            "sKore.PersistentData": {
+                "name": "sKore.PersistentData",
+                "description": "Creates a PersistentData using the given file.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "path",
+                        "description": "The path of the file to store the data in."
+                    }
+                ],
+                "item": "function"
+            }
+        },
+        "item": "category"
+    },
+    "classes": {
+        "name": "Classes",
+        "subcategories": {
+            "PersistentData": {
+                "name": "PersistentData",
+                "subcategories": {
+                    "PersistentData:load": {
+                        "name": "PersistentData:load",
+                        "description": "Loads/reloads data from the data file.",
+                        "returns": [
+                            {
+                                "type": "PersistentData",
+                                "description": "Returns itself."
+                            }
+                        ],
+                        "item": "function"
+                    },
+                    "PersistentData:save": {
+                        "name": "PersistentData:save",
+                        "description": "Stores data in the data file.",
+                        "returns": [
+                            {
+                                "type": "PersistentData",
+                                "description": "Returns itself."
+                            }
+                        ],
+                        "item": "function"
+                    }
+                },
+                "item": "category_class",
+                "attributes": []
+            }
+        },
+        "item": "category_class"
+    },
+    "libraries": {
+        "name": "Libraries",
+        "subcategories": {
+            "Drawing": {
+                "name": "Drawing",
+                "description": "Drawing related functions.",
+                "subcategories": {
+                    "sKore.getCircleVertices": {
+                        "name": "sKore.getCircleVertices",
+                        "description": "Generates a table with all the points to draw a circle.",
+                        "parameters": [
+                            {
+                                "type": "number",
+                                "name": "x",
+                                "description": "The x coordinate of the circle's center."
+                            },
+                            {
+                                "type": "number",
+                                "name": "y",
+                                "description": "The y coordinate of the circle's center."
+                            },
+                            {
+                                "type": "number",
+                                "name": "radius",
+                                "description": "The radius of the circle."
+                            }
+                        ],
+                        "returns": [
+                            {
+                                "type": "table",
+                                "description": "A table containing the vertices to draw the given circle."
+                            }
+                        ],
+                        "item": "function"
+                    },
+                    "sKore.drawCircle": {
+                        "name": "sKore.drawCircle",
+                        "description": "Draws the given circle.",
+                        "parameters": [
+                            {
+                                "type": "number",
+                                "name": "x",
+                                "description": "The x coordinate of the circle's center."
+                            },
+                            {
+                                "type": "number",
+                                "name": "y",
+                                "description": "The y coordinate of the circle's center."
+                            },
+                            {
+                                "type": "number",
+                                "name": "radius",
+                                "description": "The radius of the circle."
+                            }
+                        ],
+                        "item": "function"
+                    },
+                    "sKore.circularBoxVertices": {
+                        "name": "sKore.circularBoxVertices",
+                        "description": "Generates a table to generate a circular rectangle with the given characteristics.",
+                        "parameters": [
+                            {
+                                "type": "number",
+                                "name": "x",
+                                "description": "The x coordinate of the top left of the box."
+                            },
+                            {
+                                "type": "number",
+                                "name": "y",
+                                "description": "The y coordinate of the top left of the box."
+                            },
+                            {
+                                "type": "number",
+                                "name": "width",
+                                "description": "The width of the rectangle."
+                            },
+                            {
+                                "type": "number",
+                                "name": "height",
+                                "description": "The height of the rectangle."
+                            }
+                        ],
+                        "returns": [
+                            {
+                                "type": "table",
+                                "description": "The table with all the vertices."
+                            }
+                        ],
+                        "item": "function"
+                    }
+                },
+                "item": "category"
+            },
+            "Stencils": {
+                "name": "Stencils",
+                "description": "Functions to make the use of stencils easier and faster.",
+                "subcategories": {
+                    "sKore.StartStencil": {
+                        "name": "sKore.StartStencil",
+                        "description": "Starts a stencil. Everything draw after this will be the set as the shape.",
+                        "parameters": [
+                            {
+                                "type": "boolean",
+                                "name": "inverted",
+                                "description": "Inverts the shape if set to true. Every space not drawn will be the shape. Defaults to false."
+                            }
+                        ],
+                        "examples": [
+                            "```lua local test = true ```"
+                        ],
+                        "item": "function"
+                    },
+                    "sKore.DrawStencil": {
+                        "name": "sKore.DrawStencil",
+                        "description": "Stops drawing the stencil shape and start drawing the content that will be clipping to fit inside the drawn shape.",
+                        "item": "function"
+                    },
+                    "sKore.EndStencil": {
+                        "name": "sKore.EndStencil",
+                        "description": "Finishes the stencil.",
+                        "item": "function"
+                    }
+                },
+                "item": "category"
+            }
+        },
+        "item": "category"
+    },
+    "hooks": {
+        "name": "Hooks",
+        "subcategories": {},
+        "item": "category"
+    },
+    "panels": {
+        "name": "Panels",
+        "subcategories": {
+            "MPanel": {
+                "name": "MPanel",
+                "description": "Base panel for all elements.",
+                "subcategories": {
+                    "PANEL:GetBackgroundColor": {
+                        "name": "PANEL:GetBackgroundColor",
+                        "description": "Returns the background color. If this panels has a transparent background, invoke this on the parent and return its value.\n\nIf no background color is found, the default color is returned.",
+                        "returns": [
+                            {
+                                "type": "Color",
+                                "description": "The background color."
+                            }
+                        ],
+                        "item": "function"
+                    }
+                },
+                "item": "category"
+            }
+        },
+        "item": "category"
+    },
+    "enums": {
+        "name": "Enums",
+        "subcategories": {
+            "Colors": {
+                "name": "Colors",
+                "description": "Color Enums",
+                "fields": [
+                    {
+                        "type": "number",
+                        "key": "sKore.LIGHT",
+                        "description": "Represents light colors/themes."
+                    },
+                    {
+                        "type": "number",
+                        "key": "sKore.DARK",
+                        "description": "Represents dark colors/themes."
+                    }
+                ],
+                "item": "table"
+            },
+            "TextEmphasisEnums": {
+                "name": "TextEmphasisEnums",
+                "description": "Text Emphasis Enums",
+                "fields": [
+                    {
+                        "type": "number",
+                        "key": "sKore.HIGH_EMPHASIS",
+                        "description": "High text emphasis. This is what you will use the most."
+                    },
+                    {
+                        "type": "number",
+                        "key": "sKore.MEDIUM_EMPHASIS",
+                        "description": "Medium text emphasis."
+                    },
+                    {
+                        "type": "number",
+                        "key": "sKore.DISABLED_EMPHASIS",
+                        "description": "Disabled text emphasis."
+                    }
+                ],
+                "item": "table"
+            }
+        },
+        "item": "category_table"
+    },
+    "structs": {
+        "name": "Structs",
+        "subcategories": {},
+        "item": "category_table"
+    }
+}
