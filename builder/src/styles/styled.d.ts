@@ -6,6 +6,14 @@ declare module "styled-components" {
 			main: string;
 			background: (elevation: number) => string;
 		};
+		text: {
+			background: {
+				high: string,
+				medium: string,
+				disabled: string,
+				hover: string
+			}
+		};
 		sideMenu: {
 			background: string;
 			active: string;
