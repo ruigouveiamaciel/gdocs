@@ -4,16 +4,56 @@ import { light } from "../../styles/themes/light";
 import { GlobalStyles } from "../../styles/global";
 import SideMenu from "../SideMenu";
 import { Container, Content } from "./styles";
+import { Route, useParams, Switch } from "react-router-dom";
+import NotFoundPage from "../../pages/NotFoundPage";
+import { project } from "../../util/parsed";
 import FunctionPage from "../../pages/FunctionPage";
+import TablePage from "../../pages/TablePage";
+import CategoryPage from "../../pages/CategoryPage";
 
-const App: React.FC = () => {
+const RouteController: React.FC<{}> = () => {
+	const { tab, category, subcategory } = useParams();
+	const category_object = project[tab]?.subcategories?.[category];
+	const exists =
+		category_object !== undefined &&
+		(!subcategory ||
+			("subcategories" in category_object &&
+				category_object.subcategories[subcategory] !== undefined));
+
+	console.log(exists)
+
+	if (exists) {
+		const item =
+			subcategory && "subcategories" in category_object
+				? category_object.subcategories[subcategory]
+				: category_object;
+
+		if (item.item.startsWith("category")) {
+			return <CategoryPage />;
+		} else if (item.item.endsWith("table")) {
+			return <TablePage />;
+		}
+
+		return <FunctionPage />;
+	}
+
+	return <NotFoundPage />;
+};
+
+const App: React.FC<{}> = () => {
 	return (
 		<ThemeProvider theme={light}>
 			<GlobalStyles />
 			<Container>
 				<SideMenu />
 				<Content>
-					<FunctionPage />
+					<Switch>
+						<Route
+							path="/:tab/:category/:subcategory?"
+							component={RouteController}
+						/>
+						<Route component={NotFoundPage} />
+					</Switch>
 				</Content>
 			</Container>
 		</ThemeProvider>
