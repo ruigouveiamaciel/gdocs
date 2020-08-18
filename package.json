@@ -1,0 +1,13 @@
+{
+  "name": "gdocs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ruigouveiamaciel/gdocs.git",
+  "author": "Rui Maciel <ruigouveiamaciel@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "install": "yarn --cwd \"parser\" install && yarn --cwd \"builder\" install",
+    "example": "yarn --cwd \"parser\" example && yarn --cwd \"builder\" start"
+  },
+  "dependencies": {}
+}

@@ -17,6 +17,7 @@ builder/.env.test.local
 builder/.env.production.local
 
 # Dependencies
+node_modules/
 parser/node_modules/
 builder/node_modules
 builder/.pnp
@@ -34,3 +35,6 @@ builder/build
 # Enviroment files
 builder/.env*
 parser/.env*
+
+# Parsed
+builder/src/parsed.json

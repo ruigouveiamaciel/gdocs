@@ -5,12 +5,17 @@
 	"main": "src/main.ts",
 	"author": "Rui Maciel <ruigouveiamaciel@gmail.com>",
 	"license": "MIT",
-	"devDependencies": {
+	"dependencies": {
+		"@types/minimist": "^1.2.0",
 		"@types/node": "^14.0.27",
+		"minimist": "^1.2.5",
+		"ts-node": "^8.10.2",
 		"ts-node-dev": "^1.0.0-pre.56",
 		"typescript": "^3.9.7"
 	},
 	"scripts": {
-		"start": "tsnd --ignore-watch node_modules --respawn src/main.ts"
+		"start": "tsnd --ignore-watch node_modules --respawn src/main.ts",
+		"parse": "ts-node src/main.ts",
+		"example": "ts-node src/main.ts -d \"./examples\""
 	}
 }
