@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Head, Body } from "./styles";
 import Icon from "@mdi/react";
 import { mdiChevronRight } from "@mdi/js";
-import PageLink, { PageLinkProps } from "../PageLink";
+import PageLink from "../PageLink";
 import { Link, useLocation } from "react-router-dom";
 
 
 export interface SubcategoryProps {
 	label: string;
 	link: string;
-	content: PageLinkProps[];
+	children?: React.ReactElement<typeof PageLink>[];
 }
 
-const Subcategory: React.FC<SubcategoryProps> = ({ label, content, link }) => {
+const Subcategory: React.FC<SubcategoryProps> = ({ label, children, link }) => {
 	const location = useLocation()
 	const [collapsed, setCollapsed] = useState(location.pathname.startsWith(link));
-    const active = link.startsWith(location.pathname)
+	const [active, setActive] = useState(false)
+
+	useEffect(() => {
+		setActive(link === location.pathname)
+	}, [location, link])
 
 	return (
 		<Container>
@@ -31,10 +35,8 @@ const Subcategory: React.FC<SubcategoryProps> = ({ label, content, link }) => {
 					<span>{label}</span>
 				</Head>
 			</Link>
-			<Body collapsed={collapsed} count={content ? content.length : 0}>
-				{content.map((item) => (
-					<PageLink key={item.label} {...item} />
-				))}
+			<Body collapsed={collapsed} count={children ? children.length : 0}>
+				{children}
 			</Body>
 		</Container>
 	);

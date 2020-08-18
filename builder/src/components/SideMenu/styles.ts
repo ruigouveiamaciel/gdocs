@@ -7,7 +7,7 @@ export const Container = styled.menu`
 	justify-content: center;
 	box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.2),
 		0px 0px 5px 0px rgba(0, 0, 0, 0.14), 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-	background: ${({ theme }) => theme.colors.background(4)};
+	position: relative;
 `;
 
 export const TabsContainer = styled.div`
@@ -21,12 +21,13 @@ export const TabsContainer = styled.div`
 
 export interface TabProps {
 	active?: boolean;
+	empty?: boolean;
 }
 
 export const Tab = styled.div<TabProps>`
 	cursor: pointer;
 	height: 6.5rem;
-	display: flex;
+	display: ${({ empty }) => empty ? "none" : "flex"};
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
@@ -63,6 +64,20 @@ export const MenuContainer = styled.div<MenuContainerProps>`
 	overflow-x: hidden;
 	transition: max-width 250ms cubic-bezier(0.4, 0, 0.2, 1);
 	padding-top: 0.4rem;
+	background: ${({ theme }) => theme.colors.background(4)};
+	scrollbar-width: thin;
+
+	@media (max-width: 1000px) {
+		position: absolute;
+		left: 6.4rem;
+		height: 100%;
+		box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.2),
+			0px 0px 5px 0px rgba(0, 0, 0, 0.14), 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+	}
+
+	@media (max-width: 400px) {
+		width: calc(90vw - 6.4rem);
+	}
 
 	> * {
 		width: 25.6rem;
