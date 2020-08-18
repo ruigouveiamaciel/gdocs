@@ -26,28 +26,24 @@ const SideMenu: React.FC<{}> = () => {
 	return (
 		<Container>
 			<TabsContainer>
-				{tabs.map(([key, value]) => {
-					return (
-						<Tab
-							key={key}
-							empty={
-								Object.values(value.subcategories).length === 0
+				{tabs.map(([key, value]) => (
+					<Tab
+						key={key}
+						empty={Object.values(value.subcategories).length === 0}
+						active={menuOpen && activeTab === key}
+						onClick={() => {
+							if (activeTab === key) {
+								setMenuOpen(!menuOpen);
+							} else {
+								setActiveTab(key);
+								setMenuOpen(true);
 							}
-							active={menuOpen && activeTab === key}
-							onClick={() => {
-								if (activeTab === key) {
-									setMenuOpen(!menuOpen);
-								} else {
-									setActiveTab(key);
-									setMenuOpen(true);
-								}
-							}}
-						>
-							<Icon path={icons[key] ?? icons["default"]} />
-							<span>{value.name}</span>
-						</Tab>
-					);
-				})}
+						}}
+					>
+						<Icon path={icons[key] ?? icons["default"]} />
+						<span>{value.name}</span>
+					</Tab>
+				))}
 			</TabsContainer>
 			<MenuContainer active={menuOpen}>
 				{project[activeTab] &&
