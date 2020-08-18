@@ -21,36 +21,41 @@ export const TabsContainer = styled.div`
 
 export interface TabProps {
 	active?: boolean;
-	empty?: boolean;
 }
 
 export const Tab = styled.div<TabProps>`
 	cursor: pointer;
-	height: 6.5rem;
-	display: ${({ empty }) => empty ? "none" : "flex"};
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+	height: 6.4rem;
 	transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
-	border-bottom: 0.1rem solid ${({ theme }) => theme.sideMenu.hover};
 	background: ${({ theme, active }) =>
 		active ? theme.sideMenu.active : "none"};
+	border-bottom: 1px solid ${({ theme }) => theme.sideMenu.divider};
 
-	:hover {
+	> div:hover {
 		background: ${({ theme }) => theme.sideMenu.hover};
 	}
 
-	svg {
-		width: 2.4rem;
-		height: 2.4rem;
-		margin-bottom: 0.4rem;
-	}
+	> div {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-direction: column;
+		padding-top: 1.2rem;
+		transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-	span {
-		font-weight: 500;
-		font-size: 1.2rem;
-		line-height: 1.2rem;
-		user-select: none;
+		svg {
+			width: 2.4rem;
+			height: 2.4rem;
+			margin-bottom: 0.4rem;
+		}
+
+		span {
+			font-weight: 500;
+			font-size: 1.2rem;
+			line-height: 1.2rem;
+			user-select: none;
+		}
 	}
 `;
 

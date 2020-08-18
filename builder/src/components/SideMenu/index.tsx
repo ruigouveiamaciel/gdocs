@@ -27,9 +27,8 @@ const SideMenu: React.FC<{}> = () => {
 		<Container>
 			<TabsContainer>
 				{tabs.map(([key, value]) => (
-					<Tab
+					Object.values(value.subcategories).length !== 0 && <Tab
 						key={key}
-						empty={Object.values(value.subcategories).length === 0}
 						active={menuOpen && activeTab === key}
 						onClick={() => {
 							if (activeTab === key) {
@@ -40,8 +39,10 @@ const SideMenu: React.FC<{}> = () => {
 							}
 						}}
 					>
-						<Icon path={icons[key] ?? icons["default"]} />
-						<span>{value.name}</span>
+						<div>
+							<Icon path={icons[key] ?? icons["default"]} />
+							<span>{value.name}</span>
+						</div>
 					</Tab>
 				))}
 			</TabsContainer>

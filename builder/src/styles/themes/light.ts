@@ -17,6 +17,7 @@ export const light: DefaultTheme = {
 		background: "#263238",
 		active: "#37474F",
 		text: "rgba(255, 255, 255, 0.83)",
-		hover: "rgba(255, 255, 255, 0.04)"
+		hover: "rgba(255, 255, 255, 0.04)",
+		divider: "rgba(255, 255, 255, 0.3)"
 	}
 };
