@@ -25,5 +25,6 @@ export const Container = styled.div<ContainerProps>`
 		font-size: 14px;
 		line-height: 24px;
 		letter-spacing: 0.1px;
+		user-select: none;
 	}
 `;
