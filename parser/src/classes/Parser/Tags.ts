@@ -27,11 +27,13 @@ export interface EnumeratedDockBlocks {
 const block_re = /(?<block>(?:(?:--.*)(?:[\n\r\u2028\u2029]--.*)*))(?:[\n\r\u2028\u2029](?: |\t)*function(?: |\t)(?<name>(?:\w|\.|:)+)\()?/g;
 
 /* Regex to find all the tags in a block. */
-const tags_re = /(?:@(?<tag_name>\w+)(?![^ \t\n\r\u2028\u2029])(?:(?:.|[\n\r\u2028\u2029])(?!^@\w+))*)|(?:(?:.|[\n\r\u2028\u2029])(?!^@\w+))+/gm;
+const tags_re = /(?:(?: |\t)*@(?<tag_name>\w+)(?![^ \t\n\r\u2028\u2029])(?:(?:.|[\n\r\u2028\u2029])(?!^(?: |\t)*@\w+))*)|(?:(?:.|[\n\r\u2028\u2029])(?!^(?: |\t)*@\w+))+/gm;
 
 /* Regex to trim spaces and carriage return characters */
 const carriage_re = /\r/g;
-const trim_left_re = /^(--+(?: |\t)*)/gm;
+const uncomment_re = /^(--+)/gm;
+const trim_left_re = /^((?: |\t)*)/gm;
+const rich_trim_re = /^ /gm;
 const trim_right_re = /(.)(?: |\t)*[\n\r\u2028\u2029]((?!@\w+).)/g;
 export default class Tags {
 	tags: {
@@ -96,8 +98,10 @@ export default class Tags {
 			const tag_info: TagInfo = {
 				line: line,
 				match: rich
-					? tag_match[0]
-					: tag_match[0].replace(trim_right_re, "$1 $2"),
+					? tag_match[0].replace(rich_trim_re, "")
+					: tag_match[0]
+							.replace(trim_left_re, "")
+							.replace(trim_right_re, "$1 $2"),
 				from_alias: from_alias,
 			};
 
@@ -119,7 +123,7 @@ export default class Tags {
 			blocks.push(block);
 
 			const uncomment_block = match.groups!.block.replace(
-				trim_left_re,
+				uncomment_re,
 				""
 			);
 			this.find_and_add_tags(path, block, match.line, uncomment_block);

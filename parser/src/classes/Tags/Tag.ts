@@ -13,7 +13,7 @@ export default class Tag {
 		public readonly an_alias: boolean = false,
 		public readonly rich: boolean = false
 	) {
-		const tagRe = `^@${escape_regex(name)}`;
+		const tagRe = `^(?: |\\t)*@${escape_regex(name)}`;
 		if (argsCount == 0) {
 			this.re = RegExp(tagRe + "$", "s");
 		} else if (argsCount == 1) {
