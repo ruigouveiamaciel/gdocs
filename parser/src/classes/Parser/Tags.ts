@@ -80,20 +80,26 @@ export default class Tags {
 	) {
 		find_all(tags_re, string).forEach((tag_match) => {
 			let tag_name = tag_match.groups?.tag_name ?? "description";
-			const tag_info: TagInfo = {
-				line: first_line + (from_alias ? 0 : tag_match.line - 1),
-				match: tag_match[0].replace(trim_right_re, "$1 $2"),
-				from_alias: from_alias,
-			};
+			const line = first_line + (from_alias ? 0 : tag_match.line - 1);
 
 			/* Check if the tag exists. */
 			if (!this.tags[tag_name] && !this.alias[tag_name]) {
 				error_message(
 					path,
-					tag_info.line,
+					line,
 					`The tag '@${tag_name}' doesn't exist.`
 				);
 			}
+
+			const rich = (this.tags[tag_name] || this.alias[tag_name]).rich;
+
+			const tag_info: TagInfo = {
+				line: line,
+				match: rich
+					? tag_match[0]
+					: tag_match[0].replace(trim_right_re, "$1 $2"),
+				from_alias: from_alias,
+			};
 
 			block[tag_name] = block[tag_name] ?? [];
 			block[tag_name].push(tag_info);

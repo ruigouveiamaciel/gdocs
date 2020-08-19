@@ -10,7 +10,8 @@ export default class Tag {
 		public readonly name: string,
 		public readonly argsCount: number,
 		public readonly unique: boolean = true,
-		public readonly an_alias: boolean = false
+		public readonly an_alias: boolean = false,
+		public readonly rich: boolean = false
 	) {
 		const tagRe = `^@${escape_regex(name)}`;
 		if (argsCount == 0) {

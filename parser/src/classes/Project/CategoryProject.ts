@@ -27,7 +27,7 @@ export default class CategoryProject {
 		this.add_tag(new AliasTag("shared", 0, ["@realm shared"]));
 		this.add_tag(new Tag("tparam", 3, false));
 		this.add_tag(new Tag("treturn", 2, false));
-		this.add_tag(new Tag("example", 1, false));
+		this.add_tag(new Tag("example", 1, false, false, true));
 		this.add_tag(new AliasTag("constructor", 0, ["@category globals"]));
 		this.add_tag(new Tag("field", 3, false));
 
