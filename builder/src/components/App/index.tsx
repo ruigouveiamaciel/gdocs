@@ -20,8 +20,6 @@ const RouteController: React.FC<{}> = () => {
 			("subcategories" in category_object &&
 				category_object.subcategories[subcategory] !== undefined));
 
-	console.log(exists)
-
 	if (exists) {
 		const item =
 			subcategory && "subcategories" in category_object
