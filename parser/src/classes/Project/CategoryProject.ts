@@ -1,17 +1,9 @@
 import Parser from "../Parser/Parser";
 import Category from "./Category";
-import { DocBlock } from "../Parser/Tags";
-import { get_unique, get_multiple } from "../../utils/functions";
 import { AnyTag } from "../../utils/types";
 import AliasTag from "../Tags/AliasTag";
-import FunctionPage, {
-	FunctionParameters,
-	FunctionReturns,
-} from "./FunctionPage";
 import SelectorTag from "../Tags/SelectorTag";
 import Tag from "../Tags/Tag";
-import ClassCategory from "./ClassCategory";
-import TableCategory from "./TableCategory";
 
 export interface ProjectStructure {
 	[key: string]: Category;
@@ -36,38 +28,31 @@ export default class CategoryProject {
 		this.add_tag(new Tag("tparam", 3, false));
 		this.add_tag(new Tag("treturn", 2, false));
 		this.add_tag(new Tag("example", 1, false));
-		this.add_tag(new AliasTag("construct", 0, ["@category globals"]));
+		this.add_tag(new AliasTag("constructor", 0, ["@category globals"]));
 		this.add_tag(new Tag("field", 3, false));
-		this.add_tag(
-			new AliasTag("hook", 2, ([subcategory, hook]) => {
-				return [
-					"@category hooks",
-					`@subcategory ${subcategory}`,
-					`@name ${hook}`,
-				];
-			})
-		);
-		this.add_tag(
-			new AliasTag("panel", 1, ([name]) => ["@global", "@category panels", `@subcategory ${name}`, "@clientside"])
-		)
-		this.add_tag(
-			new AliasTag("enum", 1, ([name]) => ["@category enums", `@name ${name}`])
-		);
-		this.add_tag(
-			new AliasTag("struct", 1, ([name]) => [
-				"@category structs",
-				`@name ${name}`,
-			])
-		);
 
 		/* Default category */
-		this.add_category(new Category("Globals"), false, undefined);
-		this.add_category(new ClassCategory("Classes"), true, "class");
+		this.add_category(new Category("Globals"), false, "globals");
+		this.add_category(new Category("Classes"), true, "class");
 		this.add_category(new Category("Libraries"), true, "library");
-		this.add_category(new Category("Hooks"), true, undefined);
-		this.add_category(new Category("Panels"), true, undefined);
-		this.add_category(new TableCategory("Enums"), false, undefined);
-		this.add_category(new TableCategory("Structs"), false, undefined);
+		this.add_category(new Category("Hooks"), true, "hook", false, true);
+		this.add_category(new Category("Panels"), true, "panel", true, false, [
+			"@clientside",
+		]);
+		this.add_category(
+			new Category("Enums", "table"),
+			false,
+			"enum",
+			false,
+			true
+		);
+		this.add_category(
+			new Category("Structs", "table"),
+			false,
+			"struct",
+			false,
+			true
+		);
 	}
 
 	add_tag(tag: AnyTag, allowed_as_global: boolean = false): this {
@@ -79,7 +64,10 @@ export default class CategoryProject {
 	add_category(
 		category: Category,
 		has_subcategory: boolean,
-		tag_name?: string
+		tag_name?: string,
+		global_tag: boolean = true,
+		include_name_tag: boolean = false,
+		extras: string[] = []
 	) {
 		const key = category.name.toLocaleLowerCase();
 		this.structure[key] = category;
@@ -94,7 +82,15 @@ export default class CategoryProject {
 		);
 
 		if (tag_name) {
-			category.create_alias(key, tag_name, has_subcategory, this);
+			category.create_alias(
+				this,
+				key,
+				tag_name,
+				has_subcategory,
+				global_tag,
+				include_name_tag,
+				extras
+			);
 		}
 	}
 

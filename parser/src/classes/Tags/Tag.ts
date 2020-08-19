@@ -18,7 +18,10 @@ export default class Tag {
 		} else if (argsCount == 1) {
 			this.re = RegExp(tagRe + restRe, "s");
 		} else {
-			this.re = RegExp(tagRe + middleArgRe.repeat(argsCount - 1) + restRe, "s");
+			this.re = RegExp(
+				tagRe + middleArgRe.repeat(argsCount - 1) + restRe,
+				"s"
+			);
 		}
 	}
 
@@ -26,7 +29,10 @@ export default class Tag {
 		const match = string.match(this.re);
 
 		if (!match) {
-			throw `The '@${this.name}' tag requires ${this.argsCount} argument(s).`;
+			throw (
+				`The '@${this.name}' tag requires ${this.argsCount} ` +
+				`argument(s).`
+			);
 		}
 
 		return match.filter((match, index) => {

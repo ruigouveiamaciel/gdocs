@@ -1,6 +1,6 @@
 import Tag from "./Tag";
 
-type AliasCallback = (args: string[]) => string[]
+type AliasCallback = (args: string[]) => string[];
 
 export default class AliasTag extends Tag {
 	constructor(
@@ -14,8 +14,8 @@ export default class AliasTag extends Tag {
 
 	convert(string: string): string[] {
 		const args = super.process(string);
-		if (typeof this.callback === "function") {
-			return this.callback(args)
+		if (this.callback instanceof Function) {
+			return this.callback(args);
 		}
 
 		return this.callback;

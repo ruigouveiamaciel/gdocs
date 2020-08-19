@@ -1,29 +1,26 @@
-import FunctionPage, {
-	FunctionParameters,
-	FunctionReturns,
-} from "./FunctionPage";
+import FunctionPage from "./FunctionPage";
 import CategoryProject, { ProjectStructure } from "./CategoryProject";
 import { DocBlock } from "../Parser/Tags";
 import { get_unique, get_multiple } from "../../utils/functions";
 import AliasTag from "../Tags/AliasTag";
-import ClassCategory from "./ClassCategory";
-import TablePage from "./TablePage";
-import TableCategory from "./TableCategory";
+import TablePage, { FieldInfo } from "./TablePage";
 
-export type ValidSubcategory =
-	| Category
-	| ClassCategory
-	| FunctionPage
-	| TablePage
-	| TableCategory;
+export type ValidSubcategory = Category | FunctionPage | TablePage;
+
+export type ValidPageTypes = "function" | "table";
 
 export default class Category {
 	readonly subcategories: {
 		[key: string]: ValidSubcategory;
 	};
+	description?: string;
+	fields?: FieldInfo[];
 	item: string;
 
-	constructor(public readonly name: string, public description?: string) {
+	constructor(
+		public readonly name: string,
+		public readonly pageType: ValidPageTypes = "function"
+	) {
 		this.subcategories = {};
 		this.item = "category";
 	}
@@ -31,6 +28,14 @@ export default class Category {
 	set_description(description?: string): this {
 		if (!this.description) {
 			this.description = description;
+		}
+
+		return this;
+	}
+
+	set_fields(fields?: FieldInfo[]): this {
+		if (!this.fields) {
+			this.fields = fields;
 		}
 
 		return this;
@@ -67,29 +72,18 @@ export default class Category {
 				.map((tag) => tag[0])
 				.join("\n\n")
 				.trim();
-			const params: FunctionParameters[] = get_multiple(block, "tparam").map(
-				(param) => ({
-					type: param[0],
-					name: param[1],
-					description: param[2],
-				})
-			);
-			const returns: FunctionReturns[] = get_multiple(block, "treturn").map(
-				(ret) => ({
-					type: ret[0],
-					description: ret[1],
-				})
-			);
-			const examples: string[] = get_multiple(block, "example").map(
-				(example) => example[0]
-			);
-			const function_page = new FunctionPage(
-				name,
-				description != "" ? description : undefined,
-				params.length > 0 ? params : undefined,
-				returns.length > 0 ? returns : undefined,
-				examples.length > 0 ? examples : undefined
-			);
+			const page =
+				this.pageType === "function"
+					? new FunctionPage(
+							name,
+							description != "" ? description : undefined,
+							block
+					  )
+					: new TablePage(
+							name,
+							description != "" ? description : undefined,
+							block
+					  );
 
 			if (has_subcategory) {
 				const subcategory = get_unique(block, "subcategory") as string;
@@ -104,9 +98,9 @@ export default class Category {
 					subcategory
 				) as Category;
 
-				sub.add_subcategory(function_page);
+				sub.add_subcategory(page);
 			} else {
-				structure[category].add_subcategory(function_page);
+				structure[category].add_subcategory(page);
 			}
 		};
 	}
@@ -114,42 +108,63 @@ export default class Category {
 	create_subcategory(category: string, structure: ProjectStructure) {
 		return (block: DocBlock) => {
 			const subcategory = get_unique(block, "subcategory") as string;
-			const description = get_multiple(block, "description")
+			const description: string = get_multiple(block, "description")
 				.map((tag) => tag[0])
 				.join("\n\n");
-			const description_arg = description != "" ? description : undefined;
+			const fields: FieldInfo[] = get_multiple(block, "field").map(
+				(field) => ({
+					type: field[0],
+					key: field[1],
+					description: field[2],
+				})
+			);
 
 			if (!structure[category].has_subcategory(subcategory)) {
 				structure[category].add_subcategory(
-					new Category(subcategory, description_arg)
+					new Category(subcategory, this.pageType)
 				);
-			} else {
-				const sub = structure[category].get_subcategory(
-					subcategory
-				) as Category;
-
-				sub.set_description(description_arg);
 			}
+
+			const sub = structure[category].get_subcategory(
+				subcategory
+			) as Category;
+
+			sub.set_description(description != "" ? description : undefined);
+			sub.set_fields(fields.length > 0 ? fields : undefined);
 		};
 	}
 
 	create_alias(
+		project: CategoryProject,
 		key: string,
 		tag_name: string,
 		has_subcategory: boolean,
-		project: CategoryProject
+		global_tag: boolean,
+		include_name_tag: boolean,
+		extras: string[]
 	) {
+		const global = global_tag ? ["@global"] : [];
+
 		if (has_subcategory) {
 			project.add_tag(
-				new AliasTag(tag_name, 1, ([name]) => [
-					"@global",
-					`@category ${key}`,
-					`@subcategory ${name}`,
-				])
+				new AliasTag(
+					tag_name,
+					include_name_tag ? 2 : 1,
+					([subcategory, name]) =>
+						[`@category ${key}`, `@subcategory ${subcategory}`]
+							.concat(global)
+							.concat(include_name_tag ? [`@name ${name}`] : [])
+							.concat(extras)
+				)
 			);
 		} else {
 			project.add_tag(
-				new AliasTag(tag_name, 0, ["@global", `@category ${key}`])
+				new AliasTag(tag_name, include_name_tag ? 1 : 0, ([name]) =>
+					[`@category ${key}`]
+						.concat(global)
+						.concat(include_name_tag ? [`@name ${name}`] : [])
+						.concat(extras)
+				)
 			);
 		}
 	}
