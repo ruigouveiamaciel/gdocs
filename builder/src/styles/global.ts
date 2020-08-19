@@ -24,7 +24,7 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: 1.6rem;
 		font-weight: normal;
 		letter-spacing: 0.05rem;
-		color: "#000";
+		color: ${({ theme }) => theme.text.background.high};
 		background: ${({ theme }) => theme.colors.background(0)};
 	}
 

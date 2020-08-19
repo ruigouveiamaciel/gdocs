@@ -14,6 +14,10 @@ declare module "styled-components" {
 				hover: string
 			}
 		};
+		arguments: {
+			background: string;
+			color: string;
+		}
 		sideMenu: {
 			background: string;
 			active: string;
@@ -21,5 +25,16 @@ declare module "styled-components" {
 			hover: string;
 			divider: string;
 		};
+		codeBlocks: {
+			background: string;
+			color: string;
+			comment: string;
+			punctuation: string;
+			number: string;
+			string: string;
+			operator: string;
+			keyword: string;
+			function: string;
+		}
 	}
 }

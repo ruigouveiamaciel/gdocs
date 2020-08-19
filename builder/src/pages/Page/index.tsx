@@ -1,14 +1,28 @@
-import React from "react";
-import { Container } from "./styles"
+import React, { useEffect } from "react";
+import { Container, Title } from "./styles";
 
 export interface PageProps {
-    children?: any;
+	children?: any;
+	title?: string;
 }
 
-const Page: React.FC<PageProps> = ({ children }) => {
-    return (<Container>
-        {children}
-    </Container>)
-}
+const Page: React.FC<PageProps> = ({ children, title }) => {
+	/* Fix code blocks missing the correct class on the pre element. */
+	useEffect(() => {
+		Array.from(document.getElementsByTagName("code")).forEach((child) => {
+			let parent = child.parentElement;
+			if (parent && parent.nodeName.toLowerCase() === "pre") {
+				parent.className = child.className;
+			}
+		});
+	});
 
-export default Page
+	return (
+		<Container>
+			{title && <Title>{title}</Title>}
+			{children}
+		</Container>
+	);
+};
+
+export default Page;

@@ -13,11 +13,26 @@ export const light: DefaultTheme = {
 			hover: "rgba(0, 0, 0, 0.04)"
 		}
 	},
+	arguments: {
+		background: "#3498db",
+		color: "rgb(255, 255, 255)"
+	},
 	sideMenu: {
 		background: "#263238",
 		active: "#37474F",
 		text: "rgba(255, 255, 255, 0.83)",
 		hover: "rgba(255, 255, 255, 0.04)",
 		divider: "rgba(255, 255, 255, 0.3)"
+	},
+	codeBlocks: {
+		background: "#f5f5f5",
+		color: "rgba(0, 0, 0, 0.83)",
+		comment: "#7f8c8d",
+		punctuation: "#7f8c8d",
+		number: "#e67e22",
+		string: "#27ae60",
+		operator: "#9b59b6",
+		keyword: "#8e44ad",
+		function: "#2980b9"
 	}
 };

@@ -1,10 +1,30 @@
 import React from "react";
 import Page from "../Page";
+import { useParams } from "react-router-dom";
+import { project } from "../../util/parsed";
+import { SectionContainer } from "../Page/styles";
+import marked from "marked";
 
 const CategoryPage: React.FC<{}> = () => {
-    return (<Page>
-        Category Page
-    </Page>)
-}
+	const { tab, category } = useParams();
+	const category_object = project[tab]?.subcategories?.[category];
+	const description = category_object.description;
 
-export default CategoryPage
+	function markedDescription() {
+		return {
+			__html: marked(description as string),
+		};
+	}
+
+	return (
+		<Page title={category}>
+			{description && (
+				<SectionContainer
+					dangerouslySetInnerHTML={markedDescription()}
+				/>
+			)}
+		</Page>
+	);
+};
+
+export default CategoryPage;
