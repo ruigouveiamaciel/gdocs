@@ -16,5 +16,8 @@ directories.forEach(directory => {
 });
 fs.writeFileSync(
 	path.join(__dirname, "..", "..", "builder", "src", "parsed.json"),
-	JSON.stringify(project.structure, undefined, 4)
+	JSON.stringify({
+		category_types: project.category_types,
+		structure: project.structure
+	}, undefined, 4)
 );

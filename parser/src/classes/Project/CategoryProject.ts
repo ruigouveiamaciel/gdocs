@@ -12,6 +12,7 @@ export interface ProjectStructure {
 export default class CategoryProject {
 	readonly parser: Parser;
 	readonly structure: ProjectStructure;
+	category_types: string[] = [];
 
 	constructor() {
 		this.parser = new Parser();
@@ -53,10 +54,28 @@ export default class CategoryProject {
 			false,
 			true
 		);
+
+		/* Default categories that define types. */
+		this.add_category_type("Classes")
+		this.add_category_type("Enums")
+		this.add_category_type("Structs")
+		this.add_category_type("Panels")
 	}
 
 	add_tag(tag: AnyTag, allowed_as_global: boolean = false): this {
 		this.parser.add_tag(tag, allowed_as_global);
+
+		return this;
+	}
+
+	add_category_type(category: string): this {
+		const key = category.toLocaleLowerCase()
+
+		if (this.structure[key]) {
+			this.category_types.push(key);
+		} else {
+			throw new Error(`Couldn't find a(n) '${category}' category.`)
+		}
 
 		return this;
 	}
