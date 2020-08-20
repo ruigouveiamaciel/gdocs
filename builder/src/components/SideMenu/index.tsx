@@ -26,70 +26,84 @@ const SideMenu: React.FC<{}> = () => {
 	return (
 		<Container>
 			<TabsContainer>
-				{tabs.map(([key, value]) => (
-					Object.values(value.subcategories).length !== 0 && <Tab
-						key={key}
-						active={menuOpen && activeTab === key}
-						onClick={() => {
-							if (activeTab === key) {
-								setMenuOpen(!menuOpen);
-							} else {
-								setActiveTab(key);
-								setMenuOpen(true);
-							}
-						}}
-					>
-						<div>
-							<Icon path={icons[key] ?? icons["default"]} />
-							<span>{value.name}</span>
-						</div>
-					</Tab>
-				))}
+				{tabs.map(
+					([key, value]) =>
+						Object.values(value.subcategories).length !== 0 && (
+							<Tab
+								key={key}
+								active={menuOpen && activeTab === key}
+								onClick={() => {
+									if (activeTab === key) {
+										setMenuOpen(!menuOpen);
+									} else {
+										setActiveTab(key);
+										setMenuOpen(true);
+									}
+								}}
+							>
+								<div>
+									<Icon
+										path={icons[key] ?? icons["default"]}
+									/>
+									<span>{value.name}</span>
+								</div>
+							</Tab>
+						)
+				)}
 			</TabsContainer>
 			<MenuContainer active={menuOpen}>
 				{project[activeTab] &&
-					Object.values(project[activeTab].subcategories).map((subcategory) => {
-						const key = `${activeTab}-${subcategory.name}`;
+					Object.values(project[activeTab].subcategories)
+						.sort((a, b) => a.name.localeCompare(b.name))
+						.map((subcategory) => {
+							const key = `${activeTab}-${subcategory.name}`;
 
-						if (
-							subcategory.item.startsWith("category") &&
-							"subcategories" in subcategory
-						) {
-							const content = Object.values(subcategory.subcategories).map(
-								(item) => {
-									const label = clear_label(item.name);
+							if (
+								subcategory.item.startsWith("category") &&
+								"subcategories" in subcategory
+							) {
+								const content = Object.values(
+									subcategory.subcategories
+								)
+									.sort((a, b) =>
+										a.name.localeCompare(b.name)
+									)
+									.map((item) => {
+										const label = clear_label(item.name);
 
-									return {
-										label: label,
-										key: `${key}-${item.name}`,
-										link: `/${activeTab}/${subcategory.name}/${item.name}`,
-									};
-								}
-							);
+										return {
+											label: label,
+											key: `${key}-${item.name}`,
+											link: `/${activeTab}/${subcategory.name}/${item.name}`,
+										};
+									});
 
+								return (
+									<Subcategory
+										key={`${key}`}
+										link={`/${activeTab}/${subcategory.name}`}
+										label={clear_label(subcategory.name)}
+									>
+										{content.map((item) => (
+											<PageLink
+												onClick={closeMenu}
+												{...item}
+											/>
+										))}
+									</Subcategory>
+								);
+							}
+
+							const label = clear_label(subcategory.name);
 							return (
-								<Subcategory
-									key={`${key}`}
+								<PageLink
+									key={key}
 									link={`/${activeTab}/${subcategory.name}`}
-									label={clear_label(subcategory.name)}
-								>
-									{content.map((item) => (
-										<PageLink onClick={closeMenu} {...item} />
-									))}
-								</Subcategory>
+									label={label}
+									onClick={closeMenu}
+								/>
 							);
-						}
-
-						const label = clear_label(subcategory.name);
-						return (
-							<PageLink
-								key={key}
-								link={`/${activeTab}/${subcategory.name}`}
-								label={label}
-								onClick={closeMenu}
-							/>
-						);
-					})}
+						})}
 			</MenuContainer>
 		</Container>
 	);
