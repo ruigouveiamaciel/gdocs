@@ -24,7 +24,7 @@ export interface EnumeratedDockBlocks {
 
 /* Regex to match documentation blocks and the function name below then if the
    block is above a function */
-const block_re = /(?<block>(?:(?:--.*)(?:[\n\r\u2028\u2029]--.*)*))(?:[\n\r\u2028\u2029](?: |\t)*function(?: |\t)(?<name>(?:\w|\.|:)+)\()?/g;
+const block_re = /(?<block>(?:(?:--.*)(?:[\n\r\u2028\u2029]--.*)*))(?:[\n\r\u2028\u2029](?: |\t)*function(?: |\t)+(?<name>(?:\w|\.|:)+)\()?/g;
 
 /* Regex to find all the tags in a block. */
 const tags_re = /(?:(?: |\t)*@(?<tag_name>\w+)(?![^ \t\n\r\u2028\u2029])(?:(?:.|[\n\r\u2028\u2029])(?!^(?: |\t)*@\w+))*)|(?:(?:.|[\n\r\u2028\u2029])(?!^(?: |\t)*@\w+))+/gm;
