@@ -10,7 +10,7 @@ import {
 import function_name from "../../util/function_name";
 import marked from "../../util/marked";
 import { Section, SectionContainer } from "../Page/styles";
-import { ParameterBox } from "./styles";
+import { ParameterBox, FunctionSignature } from "./styles";
 import get_types from "../../util/get_types";
 
 const FunctionPage: React.FC<{}> = () => {
@@ -40,8 +40,42 @@ const FunctionPage: React.FC<{}> = () => {
 		};
 	}
 
+	const signatureReturns = returns
+		.map((ret) => get_types(ret.type, true))
+		.map((ret, index) => (
+			<React.Fragment key={index}>
+				{index > 0 && ", "}
+				{ret}
+			</React.Fragment>
+		));
+
+	const paramsSignature = parameters.map((param) => (
+		<>
+			{get_types(param.type, true)} {param.name}
+		</>
+	)).map((param, index) => (
+		<React.Fragment key={index}>
+			{index > 0 && ", "}
+			{param}
+		</React.Fragment>
+	));
+
 	return (
 		<Page title={title}>
+			<SectionContainer>
+
+			<FunctionSignature>
+				{signatureReturns}
+				{signatureReturns.length !== 0 && " "}
+				{isMethod && (
+					<>
+						{get_types(category)}
+						{":"}
+					</>
+				)}
+				{func_name}({paramsSignature})
+			</FunctionSignature>
+			</SectionContainer>
 			{description && (
 				<>
 					<Section>Description</Section>
@@ -55,7 +89,9 @@ const FunctionPage: React.FC<{}> = () => {
 					<Section>Arguments</Section>
 					<SectionContainer>
 						{parameters.map((param, index) => (
-							<ParameterBox>
+							<ParameterBox
+								key={`${param.type}-${param.name}-${index}`}
+							>
 								<p>
 									{get_types(param.type)}{" "}
 									<strong>{param.name}</strong>
@@ -76,7 +112,7 @@ const FunctionPage: React.FC<{}> = () => {
 					<Section>Returns</Section>
 					<SectionContainer>
 						{returns.map((ret, index) => (
-							<ParameterBox>
+							<ParameterBox key={`${ret.type}-${index}`}>
 								<p>{get_types(ret.type)}</p>
 								<p
 									dangerouslySetInnerHTML={{

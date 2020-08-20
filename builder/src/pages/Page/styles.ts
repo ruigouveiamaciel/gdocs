@@ -23,7 +23,7 @@ export const Title = styled.h4`
 	line-height: 4.8rem;
 	text-align: center;
 	color: ${({ theme }) => theme.colors.main};
-	margin-bottom: 3.2rem;
+	margin-bottom: 0.8rem;
 	border-bottom: 3px solid ${({ theme }) => theme.colors.main};
 	user-select: none;
 `;
