@@ -74,6 +74,7 @@ export const MenuContainer = styled.div<MenuContainerProps>`
 
 	@media (max-width: 1000px) {
 		position: absolute;
+		z-index: 100;
 		left: 6.4rem;
 		height: 100%;
 		box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.2),
