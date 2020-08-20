@@ -39,6 +39,10 @@ declare module "styled-components" {
 			operator: string;
 			keyword: string;
 			function: string;
+		},
+		table: {
+			background: string;
+			alternative: string;
 		}
 	}
 }

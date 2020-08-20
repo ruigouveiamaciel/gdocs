@@ -38,5 +38,9 @@ export const light: DefaultTheme = {
 		operator: "#9b59b6",
 		keyword: "#8e44ad",
 		function: "#2980b9"
+	},
+	table: {
+		background: "rgba(0, 0, 0, 0.3)",
+		alternative: "rgba(0, 0, 0, 0.5)"
 	}
 };

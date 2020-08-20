@@ -1,5 +1,5 @@
 import { DocBlock } from "../Parser/Tags";
-import { get_multiple } from "../../utils/functions";
+import { get_multiple, get_unique } from "../../utils/functions";
 
 export interface FieldInfo {
 	type: string;
@@ -10,13 +10,14 @@ export interface FieldInfo {
 export default class TablePage {
 	readonly item: "table";
 	readonly fields?: FieldInfo[];
+	readonly realm?: string;
 
 	constructor(
 		public readonly name: string,
 		public readonly description?: string,
 		block: DocBlock = {}
 	) {
-		const fields: FieldInfo[] = get_multiple(block, "fields").map(
+		const fields: FieldInfo[] = get_multiple(block, "field").map(
 			(field) => ({
 				type: field[0],
 				key: field[1],
@@ -24,6 +25,7 @@ export default class TablePage {
 			})
 		);
 		this.fields = fields.length > 0 ? fields : undefined;
+		this.realm = get_unique(block, "realm");
 
 		this.item = "table";
 	}

@@ -40,6 +40,7 @@ export interface TablePage {
 	name: string;
 	description?: string;
 	fields?: FieldInfo[];
+	realm?: string;
 	item: "table";
 }
 

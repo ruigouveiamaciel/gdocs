@@ -9,7 +9,15 @@ const backgroundPalette = [
     "rgb(40, 50, 58)",
     "rgb(41, 52, 60)",
     "rgb(42, 53, 62)",
-    "rgb(43, 55, 64)"
+	"rgb(43, 55, 64)",
+	"rgb(44, 56, 66)",
+	"rgb(45, 58, 68)",
+	"rgb(46, 59, 69)",
+	"rgb(47, 60, 71)",
+	"rgb(47, 61, 72)",
+	"rgb(48, 62, 73)",
+	"rgb(48, 62, 73)",
+	"rgb(49, 63, 74)"
 ]
 
 export const dark: DefaultTheme = {
@@ -50,5 +58,9 @@ export const dark: DefaultTheme = {
 		operator: "#e74c3c",
 		keyword: "#9b59b6",
 		function: "#9b59b6"
+	},
+	table: {
+		background: backgroundPalette[16],
+		alternative: backgroundPalette[8]
 	}
 };

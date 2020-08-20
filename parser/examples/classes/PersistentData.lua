@@ -2,6 +2,10 @@
 --- Used to store persistent data between different sessions and servers.
 -- @class PersistentData
 -- @shared
+-- @field string path Path of the file the data is stored in.
+-- @field string path Path of the file the data is stored in.
+-- @field string path Path of the file the data is stored in.
+-- @field string path Path of the file the data is stored in.
 
 --- Creates a PersistentData using the given file.
 --

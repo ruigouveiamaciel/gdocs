@@ -4,7 +4,7 @@ export const Container = styled.main`
 	background: ${({ theme }) => theme.colors.background(2)};
 	width: 100%;
 	max-width: 90rem;
-	padding: 3.2rem;
+	padding: 2.4rem 3.2rem 1.6rem 3.2rem;
 
 	box-shadow: 0px 0px 1px -2px rgba(0, 0, 0, 0.2),
 		0px 0px 2px 0px rgba(0, 0, 0, 0.14), 0px 0px 5px 0px rgba(0, 0, 0, 0.12);
@@ -127,4 +127,37 @@ export const SectionContainer = styled.div`
 	.token.class-name {
 		color: ${({ theme }) => theme.codeBlocks.function};
 	}
+`;
+
+export const TableContainer = styled.div`
+    width: 100%;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+		background: ${({ theme }) => theme.table.background};
+		table-layout: fixed;
+    }
+
+    td {
+        padding: 0.6rem 1.2rem;
+		border: 3px solid ${({ theme }) => theme.colors.background(2)};
+		word-wrap: break-word;
+    }
+
+    td:nth-child(1), td:nth-child(2) {
+		width: 25%;
+    }
+
+    td:nth-child(1) {
+        border-left: none;
+    }
+
+    td:nth-child(3) {
+        border-right: none;
+    }
+
+    tr:nth-child(2n) {
+        background: ${({ theme }) => theme.table.alternative};
+    }
 `;
