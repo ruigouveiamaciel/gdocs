@@ -36,7 +36,7 @@ export const Head = styled.div<HeadProps>`
 
 	span {
 		font-family: Roboto;
-		font-weight: 500;
+		font-weight: 700;
 		font-size: 14px;
 		line-height: 24px;
 		letter-spacing: 0.1px;

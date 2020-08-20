@@ -29,7 +29,7 @@ export const Tab = styled.div<TabProps>`
 	transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 	background: ${({ theme, active }) =>
 		active ? theme.sideMenu.active : "none"};
-	border-bottom: 1px solid ${({ theme }) => theme.sideMenu.divider};
+	border-bottom: 2px solid ${({ theme }) => theme.sideMenu.divider};
 
 	> div:hover {
 		background: ${({ theme }) => theme.sideMenu.hover};
@@ -41,7 +41,7 @@ export const Tab = styled.div<TabProps>`
 		align-items: center;
 		justify-content: flex-start;
 		flex-direction: column;
-		padding-top: 1.2rem;
+		padding-top: 1.1rem;
 		transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 		svg {

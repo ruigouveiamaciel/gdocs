@@ -11,7 +11,7 @@ export const Container = styled.main`
 
 	a {
 		color: ${({ theme }) => theme.colors.main};
-		font-weight: 500;
+		font-weight: 700;
 	}
 `;
 
@@ -35,23 +35,20 @@ export const Section = styled.h5`
 	letter-spacing: 0;
 	line-height: 2.8rem;
 	color: ${({ theme }) => theme.colors.main};
-	margin-bottom: 1.6rem;
+	margin-bottom: 0.8rem;
 	margin-top: 6.4rem;
 	border-bottom: 3px solid ${({ theme }) => theme.colors.main};
 	user-select: none;
 `;
 
 export const SectionContainer = styled.div`
-	margin: 1.6rem 0;
+	margin: 0.8rem 0;
+	padding: 0.8rem 0;
 
 	p {
 		margin: 0.8rem 0;
 		font-size: 1.6rem;
 		line-height: 1.8rem;
-
-		strong {
-			font-weight: 500;
-		}
 	}
 
 	code[class*="language-"],

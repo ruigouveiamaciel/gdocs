@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const ParameterBox = styled.div`
     position: relative;
-    margin-bottom: 3.2rem;
+    margin-bottom: 2.4rem;
 
     > span {
         position: absolute;
@@ -12,16 +12,20 @@ export const ParameterBox = styled.div`
         width: 2.8rem;
         text-align: center;
         line-height: 1.8rem;
-        font-weight: 500;
+        font-weight: 700;
         background: ${({ theme }) => theme.arguments.background};
         color: ${({ theme }) => theme.arguments.color};
         user-select: none;
-        border-radius: 0.4rem 0 0 0.4rem;
+        border-radius: 0.45rem 0.1rem 0.1rem 0.45rem;
         font-size: 1.4rem;
     }
 
+    > p:first-child {
+        font-weight: 500;
+    }
+
     > p {
-        margin-left: 3.2rem;
+        margin-left: 3.8rem;
     }
 
 `

@@ -1,6 +1,5 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import { light } from "../../styles/themes/light";
 import { GlobalStyles } from "../../styles/global";
 import SideMenu from "../SideMenu";
 import { Container, Content } from "./styles";
@@ -10,6 +9,7 @@ import { project } from "../../util/parsed";
 import FunctionPage from "../../pages/FunctionPage";
 import TablePage from "../../pages/TablePage";
 import CategoryPage from "../../pages/CategoryPage";
+import { dark } from "../../styles/themes/dark";
 
 const RouteController: React.FC<{}> = () => {
 	const { tab, category, subcategory } = useParams();
@@ -40,7 +40,7 @@ const RouteController: React.FC<{}> = () => {
 
 const App: React.FC<{}> = () => {
 	return (
-		<ThemeProvider theme={light}>
+		<ThemeProvider theme={dark}>
 			<GlobalStyles />
 			<Container>
 				<SideMenu />
