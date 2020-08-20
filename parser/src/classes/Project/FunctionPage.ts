@@ -1,5 +1,5 @@
 import { DocBlock } from "../Parser/Tags";
-import { get_multiple } from "../../utils/functions";
+import { get_multiple, get_unique } from "../../utils/functions";
 
 export interface FunctionParameters {
 	name: string;
@@ -17,6 +17,7 @@ export default class FunctionPage {
 	readonly parameters?: FunctionParameters[];
 	readonly returns?: FunctionReturns[];
 	readonly examples?: string[];
+	readonly realm?: string;
 
 	constructor(
 		public readonly name: string,
@@ -42,6 +43,7 @@ export default class FunctionPage {
 			(example) => example[0]
 		);
 		this.examples = examples.length > 0 ? examples : undefined;
+		this.realm = get_unique(block, "realm")
 
 		this.item = "function";
 	}

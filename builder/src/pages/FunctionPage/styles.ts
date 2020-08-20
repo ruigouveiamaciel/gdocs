@@ -30,12 +30,31 @@ export const ParameterBox = styled.div`
 `;
 
 export const FunctionSignature = styled.div`
-    padding: 1.6rem;
+	padding: 1.6rem;
 	color: ${({ theme }) => theme.codeBlocks.color};
 	font-family: "Roboto Mono", monospace;
 	font-size: 1.6rem;
 	font-weight: 400;
-    line-height: 1.8rem;
-    margin: 0.8rem 0;
+	line-height: 1.8rem;
+	margin: 0.8rem 0;
 	background: ${({ theme }) => theme.codeBlocks.background};
+`;
+
+export const ServerRealm = styled.span`
+    background: ${({ theme }) => theme.realms.server};
+    height: 1.8rem;
+    width: 1.8rem;
+    display: inline-block;
+    align-self: center;
+    border-radius 0.4rem;
+    vertical-align: top;
+    margin-right: 0.8rem;
+`;
+
+export const ClientRealm = styled(ServerRealm)`
+    background: ${({ theme }) => theme.realms.client};
+`;
+
+export const SharedRealm = styled(ServerRealm)`
+	background: linear-gradient(45deg, ${({ theme }) => theme.realms.client} 50%, ${({ theme }) => theme.realms.server} 50.001%);;
 `;

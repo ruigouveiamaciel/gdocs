@@ -26,6 +26,7 @@ export interface FunctionPage {
 	parameters?: FunctionParameters[];
 	returns?: FunctionReturns[];
 	examples?: string[];
+	realm?: string;
 	item: "function";
 }
 

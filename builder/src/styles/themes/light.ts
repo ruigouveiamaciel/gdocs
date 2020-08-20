@@ -13,6 +13,10 @@ export const light: DefaultTheme = {
 			hover: "rgba(0, 0, 0, 0.04)"
 		}
 	},
+	realms: {
+		client: "#2ecc71",
+		server: "#3498db"
+	},
 	arguments: {
 		background: "#3498db",
 		color: "rgb(255, 255, 255)"

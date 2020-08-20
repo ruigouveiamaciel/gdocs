@@ -1,6 +1,7 @@
 
 --- Used to store persistent data between different sessions and servers.
 -- @class PersistentData
+-- @shared
 
 --- Creates a PersistentData using the given file.
 --

@@ -10,7 +10,7 @@ import {
 import function_name from "../../util/function_name";
 import marked from "../../util/marked";
 import { Section, SectionContainer } from "../Page/styles";
-import { ParameterBox, FunctionSignature } from "./styles";
+import { ParameterBox, FunctionSignature, ServerRealm, ClientRealm, SharedRealm } from "./styles";
 import get_types from "../../util/get_types";
 
 const FunctionPage: React.FC<{}> = () => {
@@ -27,6 +27,7 @@ const FunctionPage: React.FC<{}> = () => {
 	const examples: string[] = item.examples ?? [];
 	const parameters: FunctionParameters[] = item.parameters ?? [];
 	const returns: FunctionReturns[] = item.returns ?? [];
+	const realm = item.realm
 
 	function markedDescription() {
 		return {
@@ -65,6 +66,9 @@ const FunctionPage: React.FC<{}> = () => {
 			<SectionContainer>
 
 			<FunctionSignature>
+				{realm === "server" && <ServerRealm />}
+				{realm === "client" && <ClientRealm />}
+				{realm === "shared" && <SharedRealm />}
 				{signatureReturns}
 				{signatureReturns.length !== 0 && " "}
 				{isMethod && (

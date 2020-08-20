@@ -1,6 +1,7 @@
 
 --- Drawing related functions.
 -- @library Drawing
+-- @clientside
 
 --- Generates a table with all the points to draw a circle.
 --

@@ -14,6 +14,10 @@ declare module "styled-components" {
 				hover: string
 			}
 		};
+		realms: {
+			client: string;
+			server: string;
+		},
 		arguments: {
 			background: string;
 			color: string;

@@ -25,6 +25,10 @@ export const dark: DefaultTheme = {
 			hover: "rgba(255, 255, 255, 0.04)"
 		}
 	},
+	realms: {
+		client: "#f39c12",
+		server: "#3498db"
+	},
 	arguments: {
 		background: "rgb(144, 202, 249)",
 		color: backgroundPalette[2]
