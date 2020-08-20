@@ -11,13 +11,12 @@ function create_list(
 	} else if (array.length > 1) {
 		return (
 			<>
-				{array.slice(0, -2).map((item) => (
-					<>
+				{array.slice(0, -1).map((item, index) => (
+					<React.Fragment key={index}>
+						{index > 0 && (or_list ? " or " : ", ")}
 						{item}
-						{or_list ? " or " : ", "}
-					</>
-				))}
-				{array[array.length - 2]} {" or "} {array[array.length - 1]}
+					</React.Fragment>
+				))}{" or "}{array[array.length - 1]}
 			</>
 		);
 	}
