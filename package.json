@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "install": "yarn --cwd \"parser\" install && yarn --cwd \"builder\" install",
-    "example": "yarn --cwd \"parser\" example && yarn --cwd \"builder\" start"
+    "example": "yarn --cwd \"parser\" example && yarn --cwd \"builder\" start",
+    "build": "yarn --cwd \"parser\" example && yarn --cwd \"builder\" build"
   },
   "dependencies": {}
 }
