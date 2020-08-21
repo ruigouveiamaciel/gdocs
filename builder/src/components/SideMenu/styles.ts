@@ -17,6 +17,10 @@ export const TabsContainer = styled.div`
 	overflow-y: auto;
 	overflow-x: hidden;
 	scrollbar-width: none;
+
+	@media (max-width: 1000px) {
+		z-index: 120;
+	}
 `;
 
 export interface TabProps {
