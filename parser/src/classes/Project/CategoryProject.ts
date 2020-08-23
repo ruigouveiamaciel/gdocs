@@ -36,7 +36,7 @@ export default class CategoryProject {
 		this.add_category(new Category("Globals"), false, "globals");
 		this.add_category(new Category("Classes"), true, "class");
 		this.add_category(new Category("Libraries"), true, "library");
-		this.add_category(new Category("Hooks"), true, "hook", false, true);
+		this.add_category(new Category("Hooks"), true, "hookcat");
 		this.add_category(new Category("Panels"), true, "panel", true, false, [
 			"@clientside",
 		]);
