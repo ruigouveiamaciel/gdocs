@@ -28,37 +28,13 @@ end
 -- If no background color is found, the default color is returned.
 -- @treturn Color The background color.
 function PANEL:GetBackgroundColor()
-	return self.backgroundColor or self:GetParent().GetBackgroundColor
-		   and self:GetParent():GetBackgroundColor()
-		   or sKore.activeTheme:getBackgroundColor(self)
 end
 
-function PANEL:Paint(width, height)
-	if self.cornerRadius > 0 then
-		draw.RoundedBox(
-			self.cornerRadius, 0, 0, width, height, self.backgroundColor
-		)
-	else
-		draw.NoTexture()
-		surface.SetDrawColor(self.backgroundColor)
-		surface.DrawRect(0, 0, width, height)
-	end
-	sKore.drawShadows(self)
-end
-
-function PANEL:PaintShadow(x, y, width, height, color)
-	if self.cornerRadius > 0 then
-		draw.RoundedBox(self.cornerRadius, x, y, width, height, color)
-	else
-		draw.NoTexture()
-		surface.SetDrawColor(color)
-		surface.DrawRect(x, y, width, height)
-	end
-end
-
-function PANEL:PerformLayout()
-	self.cornerRadius = sKore.scale(4 * sKore.cornering)
-	self.backgroundColor = sKore.activeTheme:getBackgroundColor(self)
+--- Sets the background color.
+--
+-- If set to nil, then the panel is considered transparent.
+-- @tparam Color|nil color The background color.
+function PANEL:SetBackgroundColor(color)
 end
 
 derma.DefineControl("MPanel", "", PANEL, "Panel")

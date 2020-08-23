@@ -1,0 +1,15 @@
+
+-- Table structure that describes a Source Engine ammo type.
+-- @struct AmmoData
+-- @shared
+-- @field number dmgtype Damage type using Enums/DMG.
+-- @field number force The force of the ammo.
+-- @field number maxsplash The maximum water splash size.
+-- @field number minsplash The minimum water splash size.
+-- @field string name Name of the ammo.
+-- @field number npcdmg Damage dealt to npcs.
+-- @field number plydmg Damage dealt to players.
+-- @field number Tracer type using Enums/TRACER.
+-- @field number maxcarry Maximum amount of ammo of this type the player should be able
+-- to carry in reserve.
+-- @field flags number Flags for the ammo type using Enums/AMMO.

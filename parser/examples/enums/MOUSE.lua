@@ -1,0 +1,13 @@
+
+--
+-- @enum MOUSE
+-- @field number MOUSE_FIRST First mouse button.
+-- @field number MOUSE_LEFT Left mouse button.
+-- @field number MOUSE_RIGHT Right mouse button
+-- @field number MOUSE_MIDDLE Middle mouse button, aka the wheel press
+-- @field number MOUSE_4 Mouse 4 button ( Sometimes, mouse wheel tilt left )
+-- @field number MOUSE_5 Mouse 5 button ( Sometimes, mouse wheel tilt right )
+-- @field number MOUSE_WHEEL_UP Mouse wheel scroll up
+-- @field number MOUSE_WHEEL_DOWN Mouse wheel scroll down
+-- @field number MOUSE_LAST Last mouse button
+-- @field number MOUSE_COUNT Mouse button count
