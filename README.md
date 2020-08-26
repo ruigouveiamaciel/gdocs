@@ -2,6 +2,10 @@
 
 Documentation generator for Garry's Mod addons. You can have a look at the example [here](https://ruigouveiamaciel.github.io/gdocs/#/).
 
+If you want to see examples of docummentation blocks you can check them [here](https://github.com/ruigouveiamaciel/gdocs/tree/master/parser/examples).
+
+**Notice!** This project is still not finished, there's a lot of missing features and existing features might change in the future. Feel free to contribute with ideas and code.
+
 ## Requirements
 
 - [Node.js](https://nodejs.org/) v12 or higher.
@@ -34,6 +38,30 @@ If you want to run the example on your computer simply run the following command
 $ yarn example
 ```
 This will automatically parse all example files and start the React development server.
+
+## Parse Your Own Project
+
+To parse your own project please follow the steps bellow. Its recommended to create a batch or bash file to automate this process.
+
+1. Set your working directory in the parser directory.
+   ```
+   $ cd parser
+   ```
+
+2. Parse your project using the command bellow, you can add as many directories as you want and paths must be relative to the parser directory.
+
+   If any errors occur during this process, read them and fix them.
+   ```
+   $ yarn parse -d "./examples" -d "../path/to/your/project"
+   ```
+
+3. Build the frontend.
+   ```
+   $ cd ../builder
+   $ yarn build
+   ```
+
+4. Done! Your project will be available in the build folder inside the builder directory.
 
 ## Tags Syntax
 
@@ -90,6 +118,8 @@ function addition(a, b)
 end
 ```
 
+For more examples check the [examples folder](https://github.com/ruigouveiamaciel/gdocs/tree/master/parser/examples).
+
 ## Global Tags
 
 Global tags are a way to define tags that we want to appear on every documentation block beneath it.
@@ -129,7 +159,7 @@ end
 | `@subcategory <subcategory name>` | yes | Specifies the subcategory this block belongs to, does nothing if the provided category doesn't have subcategories. |
 | `@realm <client|shared|server>` | yes | Specifies the realm of this block. Options are: `client`, `server` and `shared`. |
 | `@example <example>` | no | An example. The text provided will be processed using markup. |
-| `@field <type> <key> <description>` | no | Used to specify panel attributes, table elements, enums, etc. |
+| `@field <type> <key> <description>` | no | Used to specify panel attributes, table elements, enums, structs, etc. |
 | `@tparam <type> <name> <description>` | no | Defines a function parameter. Types can be divided with the following syntax: `type1|type2|type3` |
 | `@treturn <type>` | no | Defines a function return. Types can be divided the same way as `@tparam`. |
 
@@ -141,4 +171,12 @@ Alias tags deconstruct into normal tags. They're a way to write cleaner blocks.
 | `@serverside` | `@realm server` | Sets the realm to serverside. |
 | `@shared` | `@realm shared` | Sets the realm to shared. |
 | `@constructor` | `@category global` | Sets the current block as a class contructor. |
-| `@globals` | `@global`, `@category globals` | Sets the current file as a set of global functions.  |
+| `@globals` | `@global`, `@category globals` | All the function below this block will go under the Globals category.  |
+| `@class <class name>` | `@global`, `@category classes`, `@subcategory <class name>` | Defines a class. All function definitions bellow will be considered methods except if they have the `@constructor` tag. |
+| `@library <library name>` | `@global`, `@category libraries`, `@subcategory <library name>` | Defines a library. All function definitions bellow will be consired part of the library. |
+| `@hookcat <hook category name>` | `@global`, `@category hooks`, `@subcategory <hook category name>` | Defines a hook category. All function definitions below this block will be considered hooks. |
+| `@panel <panel name>` | `@global`, `@category panels`, `@subcategory <panel name>`, `@realm client` | Defines a class. All functions bellow this block will be considered a method. |
+| `@enum <enum name>` | `@category enums`, `@name <enum name>` | Defines an enum. `@field` tags should be added to this block. |
+| `@struct <struct name>` | `@category structs`, `@name <struct name>` | Defines a struct. `@field` tags should be added to this block. |
+
+For examples of how to use this tags, please check the [examples folder](https://github.com/ruigouveiamaciel/gdocs/tree/master/parser/examples).
