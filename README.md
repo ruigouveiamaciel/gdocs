@@ -6,6 +6,20 @@ If you want to see examples of docummentation blocks you can check them [here](h
 
 **Notice!** This project is still not finished, there's a lot of missing features and existing features might change in the future. Feel free to contribute with ideas and code.
 
+## Table of Contents
+
+<!--ts-->
+   * [Description](#gdocs---a-garrys-mod-lua-documentation-tool)
+   * [Table of contents](#table-of-contents)
+   * [Requirements](#requirements)
+   * [Example](#example)
+   * [Parse Your Own Project](#parse-your-own-project)
+   * [Tags Syntax](#tags-syntax)
+   * [Documentation Blocks](#documentation-blocks)
+   * [Global Tags](#global-tags)
+   * [Available Tags](#available-tags)
+<!--te-->
+
 ## Requirements
 
 - [Node.js](https://nodejs.org/) v12 or higher.
