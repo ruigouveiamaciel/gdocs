@@ -171,7 +171,7 @@ end
 | `@name <name>` | no | The name of the element that we're documenting, could be a function, table, hook, etc. Has to exist on every block except in global blocks. This tag is usually auto generated from code or previous tags. |
 | `@category <category name>` | yes | Specifies the category this block belongs to, if no tag is provided, defaults to the default category. |
 | `@subcategory <subcategory name>` | yes | Specifies the subcategory this block belongs to, does nothing if the provided category doesn't have subcategories. |
-| `@realm <client|shared|server>` | yes | Specifies the realm of this block. Options are: `client`, `server` and `shared`. |
+| `@realm <client or shared or server>` | yes | Specifies the realm of this block. Options are: `client`, `server` and `shared`. |
 | `@example <example>` | no | An example. The text provided will be processed using markup. |
 | `@field <type> <key> <description>` | no | Used to specify panel attributes, table elements, enums, structs, etc. |
 | `@tparam <type> <name> <description>` | no | Defines a function parameter. Types can be divided with the following syntax: `type1|type2|type3` |
