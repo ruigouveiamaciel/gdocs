@@ -42,7 +42,7 @@ If you want to see examples of docummentation blocks you can check them [here](h
    $ cd gdocs
    $ yarn install
    ```
-   
+
 4. Done!
 
 ## Example
@@ -94,8 +94,8 @@ The following tag expects 3 arguments.
 -- @tagName argument1 "This is the argument 2" This is the argument 3. The last argument doesn't require quotes to have more than one word.
 -- @tagName "This is argument one" 'This is argument 2. You can mix quote types.' This is argument 3.
 
--- @tagName "This is argument 
--- 1" "Argument 2" You can break your tag into multiple 
+-- @tagName "This is argument
+-- 1" "Argument 2" You can break your tag into multiple
 -- lines. Line breaks will be replaced by a space.
 ```
 
@@ -138,7 +138,7 @@ For more examples check the [examples folder](https://github.com/ruigouveiamacie
 
 Global tags are a way to define tags that we want to appear on every documentation block beneath it.
 
-Some tags, for example, the `@example` tag, won't appear on every documentaation block beneath it, for obvious reasons. 
+Some tags, for example, the `@example` tag, won't appear on every documentaation block beneath it, for obvious reasons.
 
 #### Example
 
@@ -166,7 +166,7 @@ end
 ## Available Tags
 
 | Tag  | Allowed as global | Description |
-| ------------- | ------------- | ------------- | 
+| ------------- | ------------- | ------------- |
 | `@global` | no | Sets the current block as a global block. |
 | `@name <name>` | no | The name of the element that we're documenting, could be a function, table, hook, etc. Has to exist on every block except in global blocks. This tag is usually auto generated from code or previous tags. |
 | `@category <category name>` | yes | Specifies the category this block belongs to, if no tag is provided, defaults to the default category. |
@@ -180,7 +180,7 @@ end
 Alias tags deconstruct into normal tags. They're a way to write cleaner blocks.
 
 | Alias Tag  | Same as | Description |
-| ------------- | ------------- | ------------- | 
+| ------------- | ------------- | ------------- |
 | `@clientside` | `@realm client` | Sets the realm to clientside. |
 | `@serverside` | `@realm server` | Sets the realm to serverside. |
 | `@shared` | `@realm shared` | Sets the realm to shared. |
