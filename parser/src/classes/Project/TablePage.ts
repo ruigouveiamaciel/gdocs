@@ -11,6 +11,7 @@ export default class TablePage {
 	readonly item: "table";
 	readonly fields?: FieldInfo[];
 	readonly realm?: string;
+	readonly internal?: boolean;
 
 	constructor(
 		public readonly name: string,
@@ -26,6 +27,10 @@ export default class TablePage {
 		);
 		this.fields = fields.length > 0 ? fields : undefined;
 		this.realm = get_unique(block, "realm");
+		this.internal =
+			get_unique(block, "internal") === "true"
+			? true
+			: undefined;
 
 		this.item = "table";
 	}

@@ -27,6 +27,7 @@ export interface FunctionPage {
 	returns?: FunctionReturns[];
 	examples?: string[];
 	realm?: string;
+	internal?: boolean;
 	item: "function";
 }
 
@@ -41,6 +42,7 @@ export interface TablePage {
 	description?: string;
 	fields?: FieldInfo[];
 	realm?: string;
+	internal?: boolean;
 	item: "table";
 }
 

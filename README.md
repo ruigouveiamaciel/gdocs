@@ -176,6 +176,7 @@ end
 | `@field <type> <key> <description>` | no | Used to specify panel attributes, table elements, enums, structs, etc. |
 | `@tparam <type> <name> <description>` | no | Defines a function parameter. Types can be divided with the following syntax: `type1|type2|type3` |
 | `@treturn <type>` | no | Defines a function return. Types can be divided the same way as `@tparam`. |
+| `@internal` | no | Sets a function as internal. Internal functions can be used anywhere but really shouldn't be used. |
 
 Alias tags deconstruct into normal tags. They're a way to write cleaner blocks.
 

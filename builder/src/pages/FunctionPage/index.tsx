@@ -23,11 +23,21 @@ const FunctionPage: React.FC<{}> = () => {
 	const [func_name, isMethod] = function_name(item.name);
 	const title = isMethod ? `${category}:${func_name}` : func_name;
 
-	const description = item.description;
+	let description = item.description;
 	const examples: string[] = item.examples ?? [];
 	const parameters: FunctionParameters[] = item.parameters ?? [];
 	const returns: FunctionReturns[] = item.returns ?? [];
 	const realm = item.realm
+	const internal = item.internal
+
+	if (internal) {
+		const internalMessage =
+			"**This is used internally - although you're able to use it you probably shouldn't.**";
+
+		description = description
+			? `${description}\n\n${internalMessage}`
+			: internalMessage;
+	}
 
 	function markedDescription() {
 		return {
@@ -65,19 +75,19 @@ const FunctionPage: React.FC<{}> = () => {
 		<Page title={title}>
 			<SectionContainer>
 
-			<FunctionSignature>
-				{realm === "server" && <ServerRealm />}
-				{realm === "client" && <ClientRealm />}
-				{realm === "shared" && <SharedRealm />}
-				{signatureReturns}
-				{signatureReturns.length !== 0 && " "}
-				{isMethod && (
-					<>
-						{get_types(category)}
-						{":"}
-					</>
-				)}
-				{func_name}({paramsSignature})
+				<FunctionSignature>
+					{realm === "server" && <ServerRealm />}
+					{realm === "client" && <ClientRealm />}
+					{realm === "shared" && <SharedRealm />}
+					{signatureReturns}
+					{signatureReturns.length !== 0 && " "}
+					{isMethod && (
+						<>
+							{get_types(category)}
+							{":"}
+						</>
+					)}
+					{func_name}({paramsSignature})
 			</FunctionSignature>
 			</SectionContainer>
 			{description && (

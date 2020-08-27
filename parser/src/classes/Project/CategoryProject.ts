@@ -4,6 +4,7 @@ import { AnyTag } from "../../utils/types";
 import AliasTag from "../Tags/AliasTag";
 import SelectorTag from "../Tags/SelectorTag";
 import Tag from "../Tags/Tag";
+import BooleanTag from "../Tags/BooleanTag";
 
 export interface ProjectStructure {
 	[key: string]: Category;
@@ -31,6 +32,7 @@ export default class CategoryProject {
 		this.add_tag(new Tag("example", 1, false, false, true));
 		this.add_tag(new AliasTag("constructor", 0, ["@category globals"]));
 		this.add_tag(new Tag("field", 3, false));
+		this.add_tag(new BooleanTag("internal"));
 
 		/* Default category */
 		this.add_category(new Category("Globals"), false, "globals");
