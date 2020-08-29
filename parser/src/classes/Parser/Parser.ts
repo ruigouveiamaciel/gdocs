@@ -99,7 +99,7 @@ export default class Parser {
 						block,
 						this.categories[category].subcategory
 					);
-				} else {
+				} else if (!global) {
 					this.categories[category].add_item!(
 						block,
 						this.categories[category].subcategory
