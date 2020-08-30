@@ -177,6 +177,7 @@ end
 | `@tparam <type> <name> <description>` | no | Defines a function parameter. Types can be divided with the following syntax: `type1|type2|type3` |
 | `@treturn <type>` | no | Defines a function return. Types can be divided the same way as `@tparam`. |
 | `@internal` | no | Sets a function as internal. Internal functions can be used anywhere but really shouldn't be used. |
+| `@ignore` | no | This is a special tag, ignores the current block, can go anywhere in the block, even in the middle of the text. For examples check [here](https://github.com/ruigouveiamaciel/gdocs/blob/master/parser/examples/ignored/ignored.lua). |
 
 Alias tags deconstruct into normal tags. They're a way to write cleaner blocks.
 

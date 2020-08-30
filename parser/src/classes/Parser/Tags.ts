@@ -24,17 +24,18 @@ export interface EnumeratedDockBlocks {
 
 /* Regex to match documentation blocks and the function name below then if the
    block is above a function */
-const block_re = /(?<block>(?:(?:--.*)(?:[\n\r\u2028\u2029]--.*)*))(?:[\n\r\u2028\u2029](?: |\t)*function(?: |\t)+(?<name>(?:\w|\.|:)+)\()?/g;
+const block_re = /^(?: |\t)*(?<block>(?:(?:--.*)(?:[\n\r\u2028\u2029](?: |\t)*--.*)*))(?:[\n\r\u2028\u2029](?: |\t)*function(?: |\t)+(?<name>(?:\w|\.|:)+)\()?/gm;
 
 /* Regex to find all the tags in a block. */
 const tags_re = /(?:(?: |\t)*@(?<tag_name>\w+)(?![^ \t\n\r\u2028\u2029])(?:(?:.|[\n\r\u2028\u2029])(?!^(?: |\t)*@\w+))*)|(?:(?:.|[\n\r\u2028\u2029])(?!^(?: |\t)*@\w+))+/gm;
 
 /* Regex to trim spaces and carriage return characters */
 const carriage_re = /\r/g;
-const uncomment_re = /^(--+)/gm;
+const uncomment_re = /^(?: |\t)*(--+)/gm;
 const trim_left_re = /^((?: |\t)*)/gm;
 const rich_trim_re = /^ /gm;
 const trim_right_re = /(.)(?: |\t)*[\n\r\u2028\u2029]((?!@\w+).)/g;
+const ignore_re = /@ignore/g
 export default class Tags {
 	tags: {
 		[key: string]: AnyTag;
@@ -121,6 +122,10 @@ export default class Tags {
 			/* Object with no prototype to avoid name collisions. */
 			const block: DocBlock = Object.create(null, {});
 			blocks.push(block);
+
+			if (match.groups!.block.match(ignore_re)) {
+				return; /* Ignore this block if @ignore is found. */
+			}
 
 			const uncomment_block = match.groups!.block.replace(
 				uncomment_re,
@@ -238,7 +243,9 @@ export default class Tags {
 
 		const blocks_enumerated: EnumeratedDockBlocks = {};
 		blocks.forEach((block, index) => {
-			blocks_enumerated[block_matches[index].line] = block;
+			if (Object.keys(block).length !== 0) {
+				blocks_enumerated[block_matches[index].line] = block;
+			}
 		});
 
 		/* Check for blocks with no @global that have no @name tag */
