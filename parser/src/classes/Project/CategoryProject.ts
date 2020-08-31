@@ -26,7 +26,9 @@ export default class CategoryProject {
 			true
 		);
 		this.add_tag(new AliasTag("clientside", 0, ["@realm client"]));
+		this.add_tag(new AliasTag("client", 0, ["@realm client"]));
 		this.add_tag(new AliasTag("serverside", 0, ["@realm server"]));
+		this.add_tag(new AliasTag("server", 0, ["@realm server"]));
 		this.add_tag(new AliasTag("shared", 0, ["@realm shared"]));
 		this.add_tag(new Tag("tparam", 3, false));
 		this.add_tag(new Tag("treturn", 2, false));
