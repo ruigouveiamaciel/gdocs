@@ -5,11 +5,12 @@ import SideMenu from "../SideMenu";
 import { Container, Content } from "./styles";
 import { Route, useParams, Switch } from "react-router-dom";
 import NotFoundPage from "../../pages/NotFoundPage";
-import { project } from "../../util/parsed";
+import { project, title } from "../../util/parsed";
 import FunctionPage from "../../pages/FunctionPage";
 import TablePage from "../../pages/TablePage";
 import CategoryPage from "../../pages/CategoryPage";
 import { dark } from "../../styles/themes/dark";
+import { Helmet } from "react-helmet";
 
 const RouteController: React.FC<{}> = () => {
 	const { tab, category, subcategory } = useParams();
@@ -41,6 +42,9 @@ const RouteController: React.FC<{}> = () => {
 const App: React.FC<{}> = () => {
 	return (
 		<ThemeProvider theme={dark}>
+			<Helmet>
+				<title>{title}</title>
+			</Helmet>
 			<GlobalStyles />
 			<Container>
 				<SideMenu />

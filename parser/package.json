@@ -16,6 +16,6 @@
 	"scripts": {
 		"start": "tsnd --ignore-watch node_modules --respawn src/main.ts",
 		"parse": "ts-node src/main.ts",
-		"example": "ts-node src/main.ts -d \"./examples\""
+		"example": "ts-node src/main.ts -d \"./examples\" --config \"./config.json\""
 	}
 }

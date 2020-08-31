@@ -8,6 +8,7 @@ import {
 	mdiDatabase,
 	mdiCursorDefault,
 } from "@mdi/js";
+import * as mdiIcons from "@mdi/js";
 
 export interface FunctionParameters {
 	name: string;
@@ -67,6 +68,10 @@ export interface ProjectStructure {
 const parsed = require("../parsed.json");
 export const project: ProjectStructure = parsed.structure;
 export const category_types: string[] = parsed.category_types;
+export const title: string = parsed.title;
+const extraIcons: {
+	[key: string]: string
+} = parsed.icons
 
 export const icons: {
 	[key: string]: string;
@@ -80,3 +85,12 @@ export const icons: {
 	structs: mdiDatabase,
 	default: mdiCursorDefault,
 };
+
+console.log(mdiIcons)
+
+Object.entries(extraIcons).forEach(([tab, icon]: string[]) => {
+	const key = tab.toLocaleLowerCase()
+
+	// @ts-ignore
+	icons[key] = mdiIcons[icon] !== undefined ? mdiIcons[icon] : mdiCursorDefault
+})

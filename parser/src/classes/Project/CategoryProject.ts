@@ -14,6 +14,7 @@ export default class CategoryProject {
 	readonly parser: Parser;
 	readonly structure: ProjectStructure;
 	category_types: string[] = [];
+	title: string = "Documentation";
 
 	constructor() {
 		this.parser = new Parser();
@@ -64,6 +65,12 @@ export default class CategoryProject {
 		this.add_category_type("Panels")
 	}
 
+	set_title(title: string): this {
+		this.title = title;
+
+		return this;
+	}
+
 	add_tag(tag: AnyTag, allowed_as_global: boolean = false): this {
 		this.parser.add_tag(tag, allowed_as_global);
 
@@ -71,12 +78,12 @@ export default class CategoryProject {
 	}
 
 	add_category_type(category: string): this {
-		const key = category.toLocaleLowerCase()
+		const key = category.toLocaleLowerCase();
 
 		if (this.structure[key]) {
 			this.category_types.push(key);
 		} else {
-			throw new Error(`Couldn't find a(n) '${category}' category.`)
+			throw new Error(`Couldn't find a(n) '${category}' category.`);
 		}
 
 		return this;
