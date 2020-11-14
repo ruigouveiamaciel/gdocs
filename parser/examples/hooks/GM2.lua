@@ -12,7 +12,7 @@
 --
 -- For a more general purpose function that handles all kinds of input,
 -- see GM:PlayerButtonDown.
--- @hook HM2 KeyPress
+-- @hook GM2 KeyPress
 -- @shared
 -- @tparam Player ply The player pressing the key. If running client-side,
 -- this will always be LocalPlayer.
