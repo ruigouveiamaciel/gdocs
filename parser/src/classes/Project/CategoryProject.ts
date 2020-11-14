@@ -36,6 +36,13 @@ export default class CategoryProject {
 		this.add_tag(new AliasTag("constructor", 0, ["@category globals"]));
 		this.add_tag(new Tag("field", 3, false));
 		this.add_tag(new BooleanTag("internal"));
+		this.add_tag(
+			new AliasTag("hook", 2, ([subcategory, name]) => [
+				"@category hooks",
+				`@subcategory ${subcategory}`,
+				`@name ${name}`,
+			])
+		);
 
 		/* Default category */
 		this.add_category(new Category("Globals"), false, "globals");
@@ -61,10 +68,10 @@ export default class CategoryProject {
 		);
 
 		/* Default categories that define types. */
-		this.add_category_type("Classes")
-		this.add_category_type("Enums")
-		this.add_category_type("Structs")
-		this.add_category_type("Panels")
+		this.add_category_type("Classes");
+		this.add_category_type("Enums");
+		this.add_category_type("Structs");
+		this.add_category_type("Panels");
 	}
 
 	set_title(title: string): this {

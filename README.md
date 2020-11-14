@@ -191,6 +191,7 @@ Alias tags deconstruct into normal tags. They're a way to write cleaner blocks.
 | `@class <class name>` | `@global`, `@category classes`, `@subcategory <class name>` | Defines a class. All function definitions bellow will be considered methods except if they have the `@constructor` tag. |
 | `@library <library name>` | `@global`, `@category libraries`, `@subcategory <library name>` | Defines a library. All function definitions bellow will be consired part of the library. |
 | `@hookcat <hook category name>` | `@global`, `@category hooks`, `@subcategory <hook category name>` | Defines a hook category. All function definitions below this block will be considered hooks. |
+| `@hook <hook category name> <hook name>` | `@category hooks`, `@subcategory <hook category name>`, `@name <hook name>` | Defines a single hook. You can define hook parameters just like functions. |
 | `@panel <panel name>` | `@global`, `@category panels`, `@subcategory <panel name>`, `@realm client` | Defines a class. All functions bellow this block will be considered a method. |
 | `@enum <enum name>` | `@category enums`, `@name <enum name>` | Defines an enum. `@field` tags should be added to this block. |
 | `@struct <struct name>` | `@category structs`, `@name <struct name>` | Defines a struct. `@field` tags should be added to this block. |
