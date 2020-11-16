@@ -1,4 +1,4 @@
-name: Build versioned imag
+name: Build versioned image
 on:
   push:
     tags:
@@ -12,8 +12,8 @@ jobs:
       - name: Install Dependencies
         run: yarn install
       - name: Docker login
-        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username ruigouveiamaciel --password-stdin
+        run: echo ${{ secrets.PAT }} | docker login ghcr.io --username ruigouveiamaciel --password-stdin
       - name: Docker build
-        run: docker build -t docker.pkg.github.com/ruigouveiamaciel/gdocs/gdocs:${GITHUB_REF#refs/tags/} .
+        run: docker build -t ghcr.io/ruigouveiamaciel/gdocs:${GITHUB_REF#refs/tags/} .
       - name: Docker push tag latest
-        run: docker push docker.pkg.github.com/ruigouveiamaciel/gdocs/gdocs:${GITHUB_REF#refs/tags/}
+        run: docker push ghcr.io/ruigouveiamaciel/gdocs:${GITHUB_REF#refs/tags/}
