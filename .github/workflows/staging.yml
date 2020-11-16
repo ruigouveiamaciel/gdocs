@@ -9,7 +9,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install
       - name: Docker login
-        run: echo $PAT | docker login ghcr.io --username ruigouveiamaciel --password-stdin
+        run: echo ${{ secrets.PAT }} | docker login ghcr.io --username ruigouveiamaciel --password-stdin
       - name: Docker build
         run: docker build -t ghcr.io/ruigouveiamaciel/gdocs:${{github.sha}} .
       - name: Docker push tag latest
