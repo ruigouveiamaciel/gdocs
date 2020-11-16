@@ -1,0 +1,22 @@
+name: Build commit image
+on: pull_request
+jobs:
+  docker:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: yarn install
+      - name: Docker login
+        run: echo ${{ secrets.PAT }} | docker login ghcr.io --username ruigouveiamaciel --password-stdin
+      - name: Docker build
+        run: docker build -t ghcr.io/ruigouveiamaciel/gdocs:${{github.sha}} .
+      - name: Docker push tag latest
+        run: docker push ghcr.io/ruigouveiamaciel/gdocs:${{github.sha}}
+      - name: Notify of Registry URL
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "The latest commit built at: ghcr.io/ruigouveiamaciel/gdocs:${{github.sha}}"

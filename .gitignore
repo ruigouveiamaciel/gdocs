@@ -38,3 +38,5 @@ parser/.env*
 
 # Parsed
 builder/src/parsed.json
+
+.idea*
