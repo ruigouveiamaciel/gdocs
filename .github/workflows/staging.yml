@@ -15,8 +15,8 @@ jobs:
       - name: Docker push tag latest
         run: docker push docker.pkg.github.com/ruigouveiamaciel/gdocs/staging:${GITHUB_REF#refs/tags/}
       - name: Notify of Registry URL
-          uses: unsplash/comment-on-pr@master
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            msg: "The latest commit built at: docker.pkg.github.com/ruigouveiamaciel/gdocs/staging:${{github.sha}}"
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "The latest commit built at: docker.pkg.github.com/ruigouveiamaciel/gdocs/staging:${{github.sha}}"
