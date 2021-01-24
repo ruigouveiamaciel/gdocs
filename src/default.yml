@@ -1,0 +1,54 @@
+version: 1
+
+tags:
+  example:
+    type: custom
+    args:
+      - string
+
+  realm:
+    type: selector
+    global: true
+    required: true
+    default: shared
+    options:
+      - client
+      - server
+      - shared
+
+tag_groups:
+  function:
+    name:
+      type: custom
+      unique: true
+      required: true
+      args:
+        - string
+
+    local:
+      type: boolean
+      unique: true
+
+    tparam:
+      type: custom
+      args:
+        - string
+        - string
+        - string
+
+    treturn:
+      type: custom
+      args:
+        - string
+        - string
+
+
+
+
+categories:
+  classes: []
+  libraries: []
+  hooks: []
+  panels: []
+  enums: []
+  structs: []

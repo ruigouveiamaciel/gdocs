@@ -2,20 +2,13 @@
 
 import yargs from "yargs";
 import path from "path";
+import yaml from "js-yaml";
+import fs from "fs";
+import "./combinators/blocks"
 
-interface Config {
-    categories: {
-        [key: string]: {
-            label: string;
-            enabled: boolean;
+const defaultConfig = yaml.load(fs.readFileSync(path.join(__dirname, "default.yml"), "utf8"))
 
-        }
-    }
-}
-
-
-
-
+process.exit(0)
 
 
 const args = yargs
